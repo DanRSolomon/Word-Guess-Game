@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Word Guess Game</title>
+  </head>
+  <body>
+
+    <h1>Word Guess Game</h1>
+
+    <div>
+        <p id="directions-text"></p>
+        <p id="randomSpaceWord-text"></p>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        var spaceWords = ["earth", "jupiter", "neptune", "venus"];
+
+        var directionsText = document.getElementById("directions-text");
+        var randomSpaceWordText = document.getElementById("randomSpaceWord-text");
+
+        var randomSpaceWord = spaceWords[Math.floor(Math.random() * spaceWords.length)];
+
+        console.log(randomSpaceWord);
+
+        // for (var i = 0; i < randomSpaceWord.length; i++) {
+        //     document.write("_ ");
+        // } 
+
+        // document.onkeyup = function(event) {
+        //     var userGuess = event.key;
+        //     if ((userGuess === "t") || (userGuess === "f")) {
+        //         document.write("good guess");
+            
+        //     }
+
+        // }        
+
+        directionsText.textContent = "Try to guess the space word!";
+        randomSpaceWordText.textContent = randomSpaceWord;
+
+    </script>
+
+  </body>
+</html>
