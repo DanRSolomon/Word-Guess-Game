@@ -24,14 +24,15 @@
         var directionsText = document.getElementById("directions-text");
         var randomSpaceWordText = document.getElementById("randomSpaceWord-text");
         var answerArraytext = document.getElementById("answerArray-text");
-        var userGuesstext = document.getElementById("userGuess-text");
+        var userLettersGuessedtext = document.getElementById("userGuess-text");
 
         var randomSpaceWord = spaceWords[Math.floor(Math.random() * spaceWords.length)];
 
         console.log(randomSpaceWord);
 
         directionsText.textContent = "Try to guess the space word!";
-        randomSpaceWordText.textContent = randomSpaceWord;
+        userLettersGuessedtext.textContent = "Letters guessed: "
+        // randomSpaceWordText.textContent = randomSpaceWord;
 
         var answerArray = [];
         for (var i = 0; i < randomSpaceWord.length; i++) {
@@ -39,6 +40,7 @@
         }
 
         var remainingLetters = randomSpaceWord.length;
+       
         
 // debugger;
         // for (var h = 0; remainingLetters > 0; h++) {
@@ -48,20 +50,23 @@
 
 
             document.onkeyup = function(event) {
-                console.log(event);
-                userGuesstext.textContent = event.key;
-                if (userGuesstext === 6) {
-                    console.log("that's not a letter");
-                } else {
+                console.log(event); 
+                // var userGuesstext = 0;
+                var userGuesstext = event.key;
+                userLettersGuessedtext.textContent += (userGuesstext + " ");
+                // userGuesstext = userGuesstext.textContent;
+                // if (userGuesstext == 7) {
+                //     console.log("that's not a letter");
+                // } else {
                     for (var j = 0; j < randomSpaceWord.length; j++) {
-                        if (randomSpaceWord[j] === userGuesstext.textContent) {
-                            answerArray[j] = userGuesstext.textContent;
+                        if (randomSpaceWord[j] === userGuesstext) {
+                            answerArray[j] = userGuesstext;
                             remainingLetters--;
                             answerArraytext.textContent = answerArray.join(" ");
                             console.log(answerArray);
                         }    
                     }
-                }    
+                // }    
             };
         // }
 
