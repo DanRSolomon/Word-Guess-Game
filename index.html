@@ -13,6 +13,7 @@
         <p id="randomSpaceWord-text"></p>
         <p id="userGuess-text"></p>
         <p id="answerArray-text"></p>
+        <p id="winOrLoss-text"></p>
     </div>
 
 
@@ -23,8 +24,9 @@
 
         var directionsText = document.getElementById("directions-text");
         var randomSpaceWordText = document.getElementById("randomSpaceWord-text");
-        var answerArraytext = document.getElementById("answerArray-text");
+        var answerArrayText = document.getElementById("answerArray-text");
         var userLettersGuessedtext = document.getElementById("userGuess-text");
+        var userWinOrLossText = document.getElementById("winOrLoss-text");
 
         var randomSpaceWord = spaceWords[Math.floor(Math.random() * spaceWords.length)];
 
@@ -42,33 +44,27 @@
         var remainingLetters = randomSpaceWord.length;
        
         
-// debugger;
-        // for (var h = 0; remainingLetters > 0; h++) {
-        // while (remainingLetters > 0) {
-            answerArraytext.textContent = answerArray.join(" ");
-            // var userGuess = prompt("guess a letter") ;
+        answerArrayText.textContent = answerArray.join(" ");
+
+        document.onkeyup = function(event) {
+            var userGuesstext = event.key;
+            userLettersGuessedtext.textContent += (userGuesstext + " ");
+            for (var j = 0; j < randomSpaceWord.length; j++) {
+                if (randomSpaceWord[j] === userGuesstext) {
+                    answerArray[j] = userGuesstext;
+                    remainingLetters--;
+                    answerArrayText.textContent = answerArray.join(" ");
+                }    
+            }
+
+            if (remainingLetters === 0) {
+                userWinOrLossText.textContent = "You Win!!!"
+                location.reload();
+            }
 
 
-            document.onkeyup = function(event) {
-                console.log(event); 
-                // var userGuesstext = 0;
-                var userGuesstext = event.key;
-                userLettersGuessedtext.textContent += (userGuesstext + " ");
-                // userGuesstext = userGuesstext.textContent;
-                // if (userGuesstext == 7) {
-                //     console.log("that's not a letter");
-                // } else {
-                    for (var j = 0; j < randomSpaceWord.length; j++) {
-                        if (randomSpaceWord[j] === userGuesstext) {
-                            answerArray[j] = userGuesstext;
-                            remainingLetters--;
-                            answerArraytext.textContent = answerArray.join(" ");
-                            console.log(answerArray);
-                        }    
-                    }
-                // }    
-            };
-        // }
+
+        };
 
     </script>
 
