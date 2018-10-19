@@ -40,11 +40,12 @@
 
         var remainingLetters = randomSpaceWord.length;
         
-debugger;
-        for (var h = 0; remainingLetters > 0; h++) {
+// debugger;
+        // for (var h = 0; remainingLetters > 0; h++) {
         // while (remainingLetters > 0) {
             answerArraytext.textContent = answerArray.join(" ");
             // var userGuess = prompt("guess a letter") ;
+
 
             document.onkeyup = function(event) {
                 console.log(event);
@@ -53,14 +54,16 @@ debugger;
                     console.log("that's not a letter");
                 } else {
                     for (var j = 0; j < randomSpaceWord.length; j++) {
-                        if (randomSpaceWord[j] === userGuesstext) {
-                            answerArray[j] = userGuesstext;
+                        if (randomSpaceWord[j] === userGuesstext.textContent) {
+                            answerArray[j] = userGuesstext.textContent;
                             remainingLetters--;
+                            answerArraytext.textContent = answerArray.join(" ");
+                            console.log(answerArray);
                         }    
                     }
                 }    
             };
-        }
+        // }
 
     </script>
 
