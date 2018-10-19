@@ -11,6 +11,8 @@
     <div>
         <p id="directions-text"></p>
         <p id="randomSpaceWord-text"></p>
+        <p id="userGuess-text"></p>
+        <p id="answerArray-text"></p>
     </div>
 
 
@@ -21,26 +23,44 @@
 
         var directionsText = document.getElementById("directions-text");
         var randomSpaceWordText = document.getElementById("randomSpaceWord-text");
+        var answerArraytext = document.getElementById("answerArray-text");
+        var userGuesstext = document.getElementById("userGuess-text");
 
         var randomSpaceWord = spaceWords[Math.floor(Math.random() * spaceWords.length)];
 
         console.log(randomSpaceWord);
 
-        // for (var i = 0; i < randomSpaceWord.length; i++) {
-        //     document.write("_ ");
-        // } 
-
-        // document.onkeyup = function(event) {
-        //     var userGuess = event.key;
-        //     if ((userGuess === "t") || (userGuess === "f")) {
-        //         document.write("good guess");
-            
-        //     }
-
-        // }        
-
         directionsText.textContent = "Try to guess the space word!";
         randomSpaceWordText.textContent = randomSpaceWord;
+
+        var answerArray = [];
+        for (var i = 0; i < randomSpaceWord.length; i++) {
+            answerArray[i] = "_";
+        }
+
+        var remainingLetters = randomSpaceWord.length;
+        
+debugger;
+        for (var h = 0; remainingLetters > 0; h++) {
+        // while (remainingLetters > 0) {
+            answerArraytext.textContent = answerArray.join(" ");
+            // var userGuess = prompt("guess a letter") ;
+
+            document.onkeyup = function(event) {
+                console.log(event);
+                userGuesstext.textContent = event.key;
+                if (userGuesstext === 6) {
+                    console.log("that's not a letter");
+                } else {
+                    for (var j = 0; j < randomSpaceWord.length; j++) {
+                        if (randomSpaceWord[j] === userGuesstext) {
+                            answerArray[j] = userGuesstext;
+                            remainingLetters--;
+                        }    
+                    }
+                }    
+            };
+        }
 
     </script>
 
