@@ -19,9 +19,8 @@ var randomSpaceWord = spaceWords[Math.floor(Math.random() * spaceWords.length)];
 
 console.log(randomSpaceWord);
 
-directionsText.textContent = "Try to guess the space word!";
+directionsText.textContent = "Try to guess the planet name!";
 userLettersGuessedtext.textContent = "Letters guessed: "
-// randomSpaceWordText.textContent = randomSpaceWord;
 
 var answerArray = [];
 for (var i = 0; i < randomSpaceWord.length; i++) {
@@ -50,10 +49,6 @@ document.onkeyup = function(event) {
 
     if (remainingLetters === 0) {
         userWinOrLossText.textContent = "You Win!!! Press Reset to play again."
-        // confirm("You Win!! Would you like to play again?")
-        
     }
-
-
 
 };
