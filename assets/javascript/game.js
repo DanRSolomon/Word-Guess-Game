@@ -36,19 +36,27 @@ function reloadPage() {
     location.reload();
 }
 
-document.onkeyup = function(event) {
-    var userGuesstext = event.key;
-    userLettersGuessedtext.textContent += (userGuesstext + " ");
-    for (var j = 0; j < randomSpaceWord.length; j++) {
-        if (randomSpaceWord[j] === userGuesstext) {
-            answerArray[j] = userGuesstext;
-            remainingLetters--;
-            answerArrayText.textContent = answerArray.join(" ");
-        }    
-    }
+var guessedLetterArray = [];
 
-    if (remainingLetters === 0) {
-        userWinOrLossText.textContent = "You Win!!! Press Reset to play again."
-    }
+document.onkeyup = function(event) {
+    if (guessedLetterArray.indexOf(event.key) === -1) {
+        guessedLetterArray.push(event.key);
+        console.log(guessedLetterArray);
+        var userGuesstext = event.key;
+        userLettersGuessedtext.textContent += (userGuesstext + " ");
+        for (var j = 0; j < randomSpaceWord.length; j++) {
+            if (randomSpaceWord[j] === userGuesstext) {
+                answerArray[j] = userGuesstext;
+                remainingLetters--;
+                answerArrayText.textContent = answerArray.join(" ");
+            }    
+        }
+
+        if (remainingLetters === 0) {
+            userWinOrLossText.textContent = "You Win!!! Press Reset to play again."
+        }
+    } else {
+        alert("You already guessed " + event.key + "! Try again!");
+    } 
 
 };
